@@ -13,8 +13,11 @@ int	main(int ac, char *av[])
 	for (int i = 1; i < ac; i++)
 	{
 		std::string	str(av[i]);
-		//percorre toda a string transformando td em maiúsculo
+		for (size_t j = 0; j < str.lenght(); j++)
+			std::cout << (char)std::toupper(str[j]);
+		if (i < ac - 1)
+			std::cout << " ";
 	}
-	std::endl;
+	std::cout << std::endl;
 	return (0);
 }
