@@ -25,10 +25,15 @@ class Contact
 		std::string _nickname;
 		std::string _phoneNumber;
 		std::string _secret;
+		bool _isValid(const std::string &str) const;
+		std::string _format(const std::string &str) const;
 
 	public:
 	Contact();
 	Contact (std::string firstName, std::string lastName, std::string nickname, std::string phonenumber, std::string secret);
+
+	void displaySummary(int index);
+	void displayFull() const;
 	std::string getFirstName()const;
 	std::string getLastName()const;
 	std::string getNickname()const;
@@ -40,7 +45,6 @@ class Contact
 	bool setNickname(const std::string &nickname);
 	bool setPhoneNumber(const std::string &phoneNumber);
 	bool setSecret(const std::string &secret);
-
 };
 
 #endif
