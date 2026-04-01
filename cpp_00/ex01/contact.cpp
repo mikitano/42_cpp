@@ -38,16 +38,73 @@ std::string Contact::_format(const std::string &str) const
 
 void Contact::displaySummary(int index)
 {
-	std::cout << "|" << std::setw(10) << index;
 	std::cout << "|" << std::setw(10) << _format(_firstName);
 	std::cout << "|" << std::setw(10) << _format(_lastName);
 	std::cout << "|" << std::setw(10) << _format(_nickname);
-	std::cout << "|" << std::setw(10) << _format(_phoneNumber);
-	std::cout << "|" << std::setw(10) << _format(_secret);
 	std::cout << "|" << std::endl;
 }
 
 void Contact::displayFull() const
 {
+	std::cout << "First Name: " << _firstName << std::endl;
+	std::cout << "Last Name: " << _lastName << std::endl;
+	std::cout << "Nickname: " << _nickname << std::endl;
+	std::cout << "Phone Number: " << _phoneNumber << std::endl;
+	std::cout << "Darkest Secret: " << _secret << std::endl;
+}
 
+std::string Contact::getFirstName() const
+{
+	return (_firstName);
+}
+std::string Contact::getLastName() const
+{
+	return (_lastName);
+}
+std::string Contact::getNickname() const{
+	return (_nickname);
+}
+std::string Contact::getPhoneNumber() const
+{
+	return (_phoneNumber)
+}
+std::string Contact::getSecret() const
+{
+	return (_secret);
+}
+
+bool Contact::setFirstName(const std::string &firstName)
+{
+	if (!_isValid(firstName))
+		return false;
+	_firstName = firstName;
+	return true;
+}
+bool Contact::setLastName(const std::string &lastName)
+{
+	if (!_isValid(lastName))
+		return false;
+	_lastName = lastName;
+	return true;
+}
+bool Contact::setNickname(const std::string &nickname)
+{
+	if (!_isValid(nickname))
+		return false;
+	_nickname = nickname;
+	return true;
+}
+bool Contact::setPhoneNumber(const std::string &phoneNumber)
+{
+	if (!_isValid(phoneNumber))
+		return false;
+	_phoneNumber = phoneNumber;
+	return true;
+}
+bool Contact::setSecret(const std::string &secret)
+{
+	if (!_isValid(secret))
+		return false;
+	_secret = secret;
+	return true;
 }

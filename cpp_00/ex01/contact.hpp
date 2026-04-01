@@ -29,22 +29,22 @@ class Contact
 		std::string _format(const std::string &str) const;
 
 	public:
-	Contact();
-	Contact (std::string firstName, std::string lastName, std::string nickname, std::string phonenumber, std::string secret);
+		Contact();
+		Contact (std::string firstName, std::string lastName, std::string nickname, std::string phonenumber, std::string secret);
 
-	void displaySummary(int index);
-	void displayFull() const;
-	std::string getFirstName()const;
-	std::string getLastName()const;
-	std::string getNickname()const;
-	std::string getPhoneNumber()const;
-	std::string getSecret()const;
-	
-	bool setFirstName(const std::string &firstName);
-	bool setLastName(const std::string &lastName);
-	bool setNickname(const std::string &nickname);
-	bool setPhoneNumber(const std::string &phoneNumber);
-	bool setSecret(const std::string &secret);
+		void displaySummary(int index);
+		void displayFull() const;
+		std::string getFirstName()const;
+		std::string getLastName()const;
+		std::string getNickname()const;
+		std::string getPhoneNumber()const;
+		std::string getSecret()const;
+		
+		bool setFirstName(const std::string &firstName);
+		bool setLastName(const std::string &lastName);
+		bool setNickname(const std::string &nickname);
+		bool setPhoneNumber(const std::string &phoneNumber);
+		bool setSecret(const std::string &secret);
 };
 
 #endif
