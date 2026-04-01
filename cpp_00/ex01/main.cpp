@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 16:24:54 by mkitano           #+#    #+#             */
+/*   Updated: 2026/04/01 16:40:20 by mkitano          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "phonebook.hpp"
 #include <cstdlib>
 
@@ -44,7 +56,7 @@ int	main(void)
 			std::string indexStr = getValidInput("Enter index to display details");
 			phonebook.displayContact(indexStr);
 		}
-		else if (choice == "Exit")
+		else if (choice == "EXIT")
 			break ;
 		else
 			std::cout << "Invaid option" << std::endl;

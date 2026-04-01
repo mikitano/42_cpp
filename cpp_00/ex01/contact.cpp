@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 16:41:03 by mkitano           #+#    #+#             */
-/*   Updated: 2026/03/29 16:41:49 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:33:58 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ bool Contact::_isValid(const std::string &str) const
 
 std::string Contact::_format(const std::string &str) const
 {
-	if (str,length() > 10)
+	if (str.length() > 10)
 		return (str.substr(0, 9) + '.');
 	return (str);
 }
 
 void Contact::displaySummary(int index)
 {
+	std::cout << std::setw(10) << index;
 	std::cout << "|" << std::setw(10) << _format(_firstName);
 	std::cout << "|" << std::setw(10) << _format(_lastName);
 	std::cout << "|" << std::setw(10) << _format(_nickname);
@@ -66,7 +67,7 @@ std::string Contact::getNickname() const{
 }
 std::string Contact::getPhoneNumber() const
 {
-	return (_phoneNumber)
+	return (_phoneNumber);
 }
 std::string Contact::getSecret() const
 {

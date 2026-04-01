@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 16:41:43 by mkitano           #+#    #+#             */
-/*   Updated: 2026/03/29 16:41:46 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/04/01 16:33:06 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void Phonebook::addContact(Contact newContact)
 void Phonebook::displayAll()
 {
 	std::cout << std::setw(10) << "Index" << "|";
-	std::cout << std::setw(10) << "First Name" << "|";
-	std::cout << std::setw(10) << "Last Name" << "|";
-	std::cout << std::setw(10) << "Nickname"
+	std::cout << std::setw(10) << "FirstName" << "|";
+	std::cout << std::setw(10) << "LastName" << "|";
+	std::cout << std::setw(10) << "Nickname";
 	std::cout << std::setw(10) << std::endl;
 	for (int i = 0; i < this->_count; i++)
 		this->_contact[i].displaySummary(i);
