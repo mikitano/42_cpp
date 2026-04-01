@@ -41,7 +41,7 @@ void Contact::displaySummary(int index)
 	std::cout << "|" << std::setw(10) << _format(_firstName);
 	std::cout << "|" << std::setw(10) << _format(_lastName);
 	std::cout << "|" << std::setw(10) << _format(_nickname);
-	std::cout << "|" << std::endl;
+	std::cout << std::endl;
 }
 
 void Contact::displayFull() const

@@ -21,17 +21,35 @@ int Phonebook::getCount() const
 
 void Phonebook::addContact(Contact newContact)
 {
-
+	_contact[_index] = newContact;
+	_index = (_index + 1) % 8;
+	if (_count < 8)
+		_count++;
 }
 
 void Phonebook::displayAll()
 {
-	std::cout << std::setw(10) << "Index|" << "FirstName|" << "LastName" << "Nickname" << std::endl;
+	std::cout << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout << std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "Nickname"
+	std::cout << std::setw(10) << std::endl;
 	for (int i = 0; i < this->_count; i++)
 		this->_contact[i].displaySummary(i);
 }
 
 void Phonebook::displayContact(const std::string &indexStr)
 {
-
+	if (indexStr.length() != 1 || indexStr[0] < '0' || indexStr[0] > '7')
+	{
+		std::cout << "Error: index must be between 0 - 7" << std::endl;
+		return ;
+	}
+	int index = indexStr[0] - '0';
+	if (index >= _count)
+	{
+		std::cout << "This contact has not been created yet" << std::endl;
+		return ;
+	}
+	this->_contact[index].displayFull();
 }
