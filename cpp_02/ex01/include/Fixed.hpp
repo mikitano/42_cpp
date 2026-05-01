@@ -6,15 +6,14 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 00:30:46 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/01 00:30:46 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/05/01 14:46:43 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-
-//TODO alterar para o ex01
+#include <cmath>
 
 class Fixed {
 	private:
@@ -23,10 +22,16 @@ class Fixed {
 
 	public:
 		Fixed(void);
+		Fixed(const int value);
+		Fixed(const float value);
 		Fixed(const Fixed &obj);
 		Fixed& operator=(const Fixed &obj);
 		~Fixed(void);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
+		float toFloat(void) const;
+		int toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& stream, const Fixed& obj);
