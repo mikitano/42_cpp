@@ -12,35 +12,27 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(): _rawBits(0) {
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed(): _rawBits(0) {}
 
 Fixed::Fixed(const int value) {
-	std::cout << "Int constructor called" << std::endl;
 	_rawBits = value << _fracBits;
 }
 
 Fixed::Fixed(const float value) {
-	std::cout << "Float constructor called" << std::endl;
 	_rawBits = roundf(value * (1 << _fracBits));
 }
 
 Fixed::Fixed(const Fixed &obj) {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 Fixed& Fixed::operator=(const Fixed &obj) {
 	if (this != &obj)
 		this->_rawBits = obj._rawBits;
-	std::cout << "Copy assignment operator called" << std::endl;
 	return *this;
 }
 
-Fixed::~Fixed() {
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() {}
 
 int Fixed::getRawBits(void) const {
 	return this->_rawBits;
@@ -104,6 +96,44 @@ Fixed Fixed::operator/(const Fixed& other) const {
 	Fixed result;
 	result.setRawBits((this->_rawBits << _fracBits) / other._rawBits);
 	result (result);
+}
+
+Fixed& Fixed::operator++(void) {
+	this->_rawBits++;
+	return *this;
+}
+
+Fixed Fixed::operator++(int) {
+	Fixed temp = *this;
+	this->_rawBits++;
+	return temp;
+}
+
+Fixed& Fixed::operator--(void) {
+	this->_rawBits--;
+	return *this;
+}
+
+Fixed Fixed::operator--(int) {
+	Fixed temp = *this;
+	this->_rawBits--;
+	return temp;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
+	return (a < b) ? a : b;
+}
+
+const Fixed Fixed::min(const Fixed& a, const Fixed& b) {
+	return (a < b) ? a : b;
+}
+
+Fixed& Fixed::mmax(Fixed& a, Fixed& b) {
+	return (a > b) ? a : b;
+}
+
+const Fixed Fixed::max(const Fixed& a, const Fixed& b) {
+	return (a > b) ? a : b;
 }
 
 std::ostream& operator<<(std::ostream& stream, const Fixed& obj) {
