@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 23:15:18 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/07 23:15:18 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/05/09 13:06:47 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int main(void)
 
 	std::cout << "\n========== ASSIGNMENT TEST ==========" << std::endl;
 
-	DiamondTrap another("Vaggie");
+	DiamondTrap another("Emilly");
 	another = charlie;
 	another.whoAmI();
 	another.attack("Angel");

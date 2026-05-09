@@ -6,13 +6,11 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 00:35:58 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/09 00:35:58 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/05/09 11:36:03 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Claptrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap() : ClapTrap("Default DiamondTrap_clap_name"), ScavTrap(), FragTrap() {
 	this->_name = "Default DiamondTrap";
@@ -35,14 +33,18 @@ DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), ScavTrap(o
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& rhs) {
 	if (this != &rhs)
-		ClapTrap::operator(other);
-	this->_name = other._name;
+		ClapTrap::operator=(rhs);
+	this->_name = rhs._name;
 	std::cout << "DiamondTrap copy assignment operator called" << std::endl;
 	return *this;
 }
 
 DiamondTrap::~DiamondTrap() {
 	std::cout << "DiamondTrap Destructor called: " << this->_name << std::endl;
+}
+
+void DiamondTrap::attack(const std::string& target) {
+	ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI() {

@@ -6,17 +6,17 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 00:35:36 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/09 00:35:36 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/05/09 11:31:24 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "Claptrap.hpp"
+#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 	private:
 		std::string _name;
 
