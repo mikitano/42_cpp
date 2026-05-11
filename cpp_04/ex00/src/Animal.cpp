@@ -33,3 +33,11 @@ Animal& Animal::operator=(const Animal& rhs) {
 Animal::~Animal() {
 	std::cout << "Animal destructor called" << std::endl;
 }
+
+void Animal:: makeSound() const {
+	std::cout << "Animal: *static noises*" << std::endl;
+}
+
+const std::string& Animal::getType() const {
+	return this->_type;
+}

@@ -26,6 +26,10 @@ INC_DIR =	include
 
 SRC_FILES = main.cpp \
 			Animal.cpp \
+			Dog.cpp \
+			Cat.cpp \
+			WrongAnimal.cpp \
+			WrongCat.cpp \
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 

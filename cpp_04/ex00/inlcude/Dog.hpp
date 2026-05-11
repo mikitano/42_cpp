@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 16:05:01 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/09 16:13:39 by mkitano          ###   ########.fr       */
+/*   Created: 2026/05/11 01:46:35 by mkitano           #+#    #+#             */
+/*   Updated: 2026/05/11 01:46:35 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
-#include <string>
+#include "Animal.hpp"
 
-class Animal {
-	protected:
-		std::string _type;
-
+class Dog : public Animal {
 	public:
-		Animal();
-		Animal(const std::string& type);
-		Animal(const Animal& other);
-		Animal& operator=(const Animal& rhs);
-		virtual ~Animal();
-
-		virtual void makeSound() const;
-		const std::string& getType() const;
+		Dog();
+		Dog(const Dog& other);
+		Dog& operator=(const Dog& rhs);
+		~Dog();
+		void makeSound() const;
 };
