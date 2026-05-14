@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = polymorphism
+NAME = brain
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -26,6 +26,7 @@ INC_DIR =	include
 
 SRC_FILES = main.cpp \
 			Animal.cpp \
+			Brain.cpp \
 			Dog.cpp \
 			Cat.cpp \
 			WrongAnimal.cpp \

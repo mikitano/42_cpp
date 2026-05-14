@@ -24,7 +24,11 @@ Cat::Cat(const Cat& other) : Animal(other) {
 
 Cat& Cat::operator=(const Cat& rhs) {
 	if (this != &rhs)
-		this->_type = rhs._type;
+	{
+		Animal::operator=(rhs);
+		delete this->_brain;
+		this->_brain = new Brain(*rhs._brain);
+	}
 	std::cout << "Cat copy assingment operator called" << std::endl;
 	return *this;
 }
@@ -38,14 +42,18 @@ void Cat::makeSound() const {
 	std::cout << this->_type << ": miaaaau" << std::endl;
 }
 
+Brain* Cat::getBrain() const {
+	return this->_brain;
+}
+
 const std::string& Cat::getIdea(int i) const {
 	if (i >= 100)
-		std::cerr << "This idea doesn't exist" << std::endl;
-	return this->_ideas[i];
+		std::cerr << "Caution: This idea doesn't exist" << std::endl;
+	return _brain->getIdea(i);
 }
 
 void Cat::setIdea(int i, const std::string& idea) {
 	if (i >= 100)
-		std::cerr << "Caution: Too much ideas!" << std::endl;
-	this->_ideas[i] = idea;
+		std::cerr << "Caution: Not reachable, too much ideas!" << std::endl;
+	_brain->setIdea(i, idea);
 }
