@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 14:48:47 by mkitano           #+#    #+#             */
-/*   Updated: 2026/05/01 17:34:04 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/05/03 10:36:39 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,25 +77,25 @@ bool Fixed::operator!=(const Fixed& other) const {
 Fixed Fixed::operator+(const Fixed& other) const {
 	Fixed result;
 	result.setRawBits(this->_rawBits + other._rawBits);
-	result (result);
+	return (result);
 }
 
 Fixed Fixed::operator-(const Fixed& other) const {
 	Fixed result;
 	result.setRawBits(this->_rawBits - other._rawBits);
-	result (result);
+	return (result);
 }
 
 Fixed Fixed::operator*(const Fixed& other) const {
 	Fixed result;
 	result.setRawBits((this->_rawBits * other._rawBits) >> _fracBits);
-	result (result);
+	return (result);
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
 	Fixed result;
 	result.setRawBits((this->_rawBits << _fracBits) / other._rawBits);
-	result (result);
+	return (result);
 }
 
 Fixed& Fixed::operator++(void) {
@@ -124,15 +124,15 @@ Fixed& Fixed::min(Fixed& a, Fixed& b) {
 	return (a < b) ? a : b;
 }
 
-const Fixed Fixed::min(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
 	return (a < b) ? a : b;
 }
 
-Fixed& Fixed::mmax(Fixed& a, Fixed& b) {
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
 	return (a > b) ? a : b;
 }
 
-const Fixed Fixed::max(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
 	return (a > b) ? a : b;
 }
 
