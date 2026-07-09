@@ -1,12 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/06 20:05:41 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/06 20:05:42 by mkitano          ###   ########.fr       */
+/*   Created: 2026/07/08 23:59:54 by mkitano           #+#    #+#             */
+/*   Updated: 2026/07/09 00:02:07 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
+#include <string>
+#include <iostream>
+#include <exception>
