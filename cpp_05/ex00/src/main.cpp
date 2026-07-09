@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 17:01:39 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/08 21:29:53 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/09 01:59:37 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,5 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	return (0);
 }

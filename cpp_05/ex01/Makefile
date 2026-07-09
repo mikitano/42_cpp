@@ -6,7 +6,7 @@
 #    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/08 17:09:40 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/08 23:59:15 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/09 01:38:08 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ OBJ_DIR =	obj
 INC_DIR =	include
 
 SRC_FILES = main.cpp \
-			Bureaucrat.cpp
+			Bureaucrat.cpp \
+			Form.cpp
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 

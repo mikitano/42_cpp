@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 15:17:55 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/09 00:06:30 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/09 01:43:13 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ class Bureaucrat {
 			void incrementGrade();
 			void decrementGrade();
 
+			void signForm(Form& form);
+
 			class GradeTooHighException : public std::exception {
 				public:
 					const char* what() const throw();
@@ -45,8 +47,6 @@ class Bureaucrat {
 				public:
 					const char* what() const throw();
 			};
-
-			void signForm(Form& form);
 };
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat& obj);
