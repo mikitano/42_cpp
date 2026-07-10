@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/08 23:59:43 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/09 01:18:35 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/09 16:08:13 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void AForm::beSigned(const Bureaucrat& bureaucrat) {
 }
 
 void AForm::checkExecution(Bureaucrat const &executor) const {
-	if (!this->getSigned())
+	if (!_signed)
 		throw FormNotSignedException();
-	if (executor.getGrade() > this->getGradeToExecute())
+	if (executor.getGrade() > _gradeToExecute)
 		throw GradeTooLowException();
 }
 

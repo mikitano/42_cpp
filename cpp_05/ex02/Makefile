@@ -6,11 +6,11 @@
 #    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/08 17:09:40 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/09 01:38:08 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/10 19:01:35 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = form
+NAME = aforms
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -26,7 +26,10 @@ INC_DIR =	include
 
 SRC_FILES = main.cpp \
 			Bureaucrat.cpp \
-			Form.cpp
+			AForm.cpp \
+			ShrubberyCreationForm.cpp \
+			RobotomyRequestForm.cpp \
+			PresidentialPardonForm.cpp
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 
