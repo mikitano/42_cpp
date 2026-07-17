@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/08 17:09:40 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/16 14:37:16 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/17 03:32:14 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = template
+NAME = iter
 
 RED = \033[0;31m
 GREEN = \033[0;32m
