@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/15 14:42:51 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/15 18:51:49 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/19 16:45:37 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(void) {
 
 	std::cout << "=============== Original ===============" << std::endl;
 	std::cout << "Pointer: " << ptr << std::endl;
-	std::cout << "ID: " << recovered->id << std::endl;
-	std::cout << "Name: " << recovered->name << std::endl;
+	std::cout << "ID: " << ptr->id << std::endl;
+	std::cout << "Name: " << ptr->name << std::endl;
 
 	std::cout << "\n=============== After serialize ===============" << std::endl;
 	std::cout << "uintptr_t: " << raw << std::endl;
