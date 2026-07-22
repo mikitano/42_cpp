@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 20:08:35 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/22 01:01:57 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/22 01:09:27 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void) {
 	const std::vector<int> c_vec(ivec);
 
 	std::cout << "Const Vector: ";
-	for (std::vector<int>::iterator ic_it = ivec.begin(); ic_it != ivec.end(); ++ic_it)
+	for (std::vector<int>::const_iterator ic_it = c_vec.begin(); ic_it != c_vec.end(); ++ic_it)
 		std::cout << *ic_it << " ";
 	std::cout << std::endl;
 
@@ -91,7 +91,7 @@ int	main(void) {
 	const std::list<int> c_lst(lst);
 	
 	std::cout << "Const List: ";
-	for (std::list<int>::iterator cl_it = lst.begin(); cl_it != lst.end(); ++cl_it)
+	for (std::list<int>::const_iterator cl_it = c_lst.begin(); cl_it != c_lst.end(); ++cl_it)
 		std::cout << *cl_it << " ";
 	std::cout << std::endl;
 
