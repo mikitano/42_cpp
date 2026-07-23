@@ -6,11 +6,11 @@
 #    By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/20 20:40:58 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/20 21:01:48 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/22 21:39:11 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = easyfind
+NAME = span
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -25,6 +25,7 @@ OBJ_DIR =	obj
 INC_DIR =	include
 
 SRC_FILES = main.cpp \
+			Span.cpp \
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 
