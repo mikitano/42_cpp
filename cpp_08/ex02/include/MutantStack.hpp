@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 10:04:12 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/23 15:30:33 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/23 16:38:46 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ class MutantStack : public std::stack<T> {
 		~MutantStack() {}
 
 		
-
-
 };
 
 #endif
