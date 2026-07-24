@@ -6,7 +6,7 @@
 #    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/20 20:40:58 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/23 01:08:44 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/24 01:30:41 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ OBJ_DIR =	obj
 INC_DIR =	include
 
 SRC_FILES = main.cpp \
-			Span.cpp \
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 
