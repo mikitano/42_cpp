@@ -5,29 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 21:19:57 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/30 14:54:01 by mkitano          ###   ########.fr       */
+/*   Created: 2026/07/31 21:17:07 by mkitano           #+#    #+#             */
+/*   Updated: 2026/08/01 01:04:46 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 #include <iostream>
-#include <string>
 #include <stdexcept>
 
-int main (int ac, char** av) {
+int	main(int ac, char* av[]) {
 	if (ac != 2) {
-		std::cerr << "Usage: ./btc <input_file>" << std::endl;
+		std::cerr << "Usage: ./RPN '<inverted Polish mathematical expression>'" << std::endl;
 		return 1;
 	}
-	try
-	{
-		BitcoinExchange btc;
-		btc.loadDataBase("data.csv");
-		btc.processInput(std::string(av[1]));
+	try {
+		RPN rpn;
+		rpn.calculate(av[1]);
+		rpn.printResult();
 	}
-	catch (const std::exception& e)
-	{
+	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 		return 1;
 	}

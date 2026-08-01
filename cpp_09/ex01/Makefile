@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+         #
+#    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/20 20:40:58 by mkitano           #+#    #+#              #
-#    Updated: 2026/07/30 11:31:49 by mkitano          ###   ########.fr        #
+#    Updated: 2026/07/30 14:50:47 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = btc
+NAME = RPN
 
 RED = \033[0;31m
 GREEN = \033[0;32m
@@ -25,7 +25,7 @@ OBJ_DIR =	obj
 INC_DIR =	include
 
 SRC_FILES = main.cpp \
-			BitcoinExchange.cpp \
+			RPN.cpp \
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 

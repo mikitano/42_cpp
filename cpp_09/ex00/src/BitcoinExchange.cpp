@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 13:06:42 by mkitano           #+#    #+#             */
-/*   Updated: 2026/07/29 17:49:50 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/07/30 17:54:47 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,26 @@ void BitcoinExchange::validateValue(const std::string& value) const {
 	for (size_t i = 0; i < value.size(); i++) {
 		if (value[i] == '.') {
 			if (hasDot)
-				throw std::runtime_error("Error: Bad input =>" + value);
+				throw std::runtime_error("Error: Bad input => " + value);
 			hasDot = true;
 		}
 		else if (!std::isdigit(value[i]))
-			throw std::runtime_error("Error: Bad input =>" + value);
+			throw std::runtime_error("Error: Bad input => " + value);
 	}
 }
 
 double BitcoinExchange::getExchange(const std::string& date) const {
-	//TODO
-}
+	std::map<std::string, double>::const_iterator it;
+
+	it = _data.lower_bound(date);
+	if (it != _data.end() && it->first == date)
+		return it->second;
+
+	if (it == _data.begin())
+		throw std::runtime_error("Error: no exchange rate available");
+	--it;
+	return it->second;
+}  
 
 void BitcoinExchange::loadDataBase(const std::string& filename) {
 	std::ifstream file(filename.c_str());
