@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+         #
+#    By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/07/20 20:40:58 by mkitano           #+#    #+#              #
-#    Updated: 2026/08/01 01:25:30 by mkitano          ###   ########.fr        #
+#    Updated: 2026/08/01 22:44:39 by mkitano          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ_DIR =	obj
 INC_DIR =	include
 
 SRC_FILES = main.cpp \
-
+			PmergeMe.cpp \
 
 FILES_O = $(SRC_FILES:.cpp=.o)
 
