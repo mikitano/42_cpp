@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 18:01:45 by mkitano           #+#    #+#             */
-/*   Updated: 2026/08/02 01:59:38 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/08/04 01:43:15 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,88 @@ void PmergeMe::printAfter() const {
 }
 
 void PmergeMe::sortVector() {
-	std::sort(_vec.begin(), _vec.end());
+	std::vector<std::pair<int, int> > pairs = makePairs();
+	std::vector<int> winners = pairWinners(pairs);
+	std::vector<int> losers = pairLosers(pairs);
+
+	if (_vec.size() % 2 != 0)
+		int leftover = _vec.back();
+
+	mergeSort(winners);
+}
+
+std::vector<std::pair<int, int> > PmergeMe::makePairs() {
+	std::vector<std::pair<int, int> > pairs;
+
+	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it+= 2 ) {
+		if (it + 1 == _vec.end())
+			return pairs;
+		else {
+			int a = *it, b = *(it + 1);
+			if (a > b)
+				std::swap(a, b);
+			pairs.push_back(std::make_pair(a, b));
+		}
+	}
+	return pairs;
+}
+
+std::vector<int> PmergeMe::pairWinners(const std::vector<std::pair<int, int> >& pairs) {
+	std::vector<int> winners;
+	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+		winners.push_back(it->second);
+	return winners;
+} 
+
+std::vector<int> PmergeMe::pairLosers(const std::vector<std::pair<int, int> >& pairs) {
+	std::vector<int> losers;
+	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+		losers.push_back(ti->first);
+	return losers;
+}
+
+void PmergeMe::mergeSort(std::vector<int>& winners) {
+	std::vector<int> result;
+	std::vector<int> left;
+	std::vector<int> right;
+
+	if (winners.size() <= 1)
+		return;
+
+	size_t mid = winners.size() / 2;
+	for (size_t i = 0; i < winners.size(); i++){
+		if (i < mid)
+			left.push_back(winners[i]);
+		else
+			right.push_back(winners[i]);
+	}
+	
+	mergeSort(left);
+	mergeSort(right);
+
+	std::vector<int>::iterator itLeft = left.begin();
+	std::vector<int>::iterator itRight = right.begin();
+	while (itLeft != left.end() && itRight != right.end()) {
+		if (*itLeft < *itRight) {
+			result.push_back(*itLeft);
+			++itLeft;
+		}
+		else {
+			result.push_back(*itRight);
+			++itRight;
+		}
+	}
+	while (itLeft != left.end()) {
+		result.push_back(*itLeft);
+		++itLeft;
+	}
+	while (itRight != right.end()) {
+		result.push_back(*itRight);
+		++itRight;
+	}
+	winners = result;
+}
+
+void PmergeMe::insertLoser() {
+	
 }
