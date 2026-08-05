@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 22:44:12 by mkitano           #+#    #+#             */
-/*   Updated: 2026/08/02 01:57:39 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/08/05 03:41:46 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char** av) {
 	try{
 		test.parseInput(ac, av);
 		test.printBefore();
-		test.sortVector();
+		test.exec();
 		test.printAfter();
 	}
 	catch (const std::exception& e) {

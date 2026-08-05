@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkitano <mkitano@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 18:01:45 by mkitano           #+#    #+#             */
-/*   Updated: 2026/08/04 01:43:15 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/08/05 03:53:47 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <cstdlib>
 #include <climits>
 #include <cerrno>
-
-#include <algorithm>
 
 PmergeMe::PmergeMe() {}
 
@@ -74,15 +72,22 @@ void PmergeMe::printAfter() const {
 	std::cout << std::endl;
 }
 
-void PmergeMe::sortVector() {
+std::vector<int> PmergeMe::sortVector() {
 	std::vector<std::pair<int, int> > pairs = makePairs();
-	std::vector<int> winners = pairWinners(pairs);
+
+	mergeSortPairs(pairs);
+	std::vector<int> mainChain = pairWinners(pairs);	
 	std::vector<int> losers = pairLosers(pairs);
 
-	if (_vec.size() % 2 != 0)
-		int leftover = _vec.back();
+	std::vector<size_t> jacOrder = JacobsthalOrderFull(losers.size());
+	for (size_t i = 0; i < jacOrder.size(); i++)
+		insertLoser(mainChain, losers[jacOrder[i] - 1]);
 
-	mergeSort(winners);
+	if (_vec.size() % 2 != 0){
+		int leftover = _vec.back();
+		insertLoser(mainChain, leftover);
+	}
+	return mainChain;
 }
 
 std::vector<std::pair<int, int> > PmergeMe::makePairs() {
@@ -90,54 +95,52 @@ std::vector<std::pair<int, int> > PmergeMe::makePairs() {
 
 	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it+= 2 ) {
 		if (it + 1 == _vec.end())
-			return pairs;
-		else {
-			int a = *it, b = *(it + 1);
-			if (a > b)
-				std::swap(a, b);
-			pairs.push_back(std::make_pair(a, b));
-		}
+			break;
+		int a = *it, b = *(it + 1);
+		if (a > b)
+			std::swap(a, b);
+		pairs.push_back(std::make_pair(a, b));
 	}
 	return pairs;
 }
 
 std::vector<int> PmergeMe::pairWinners(const std::vector<std::pair<int, int> >& pairs) {
 	std::vector<int> winners;
-	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); it++)
 		winners.push_back(it->second);
 	return winners;
 } 
 
 std::vector<int> PmergeMe::pairLosers(const std::vector<std::pair<int, int> >& pairs) {
 	std::vector<int> losers;
-	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
-		losers.push_back(ti->first);
+	for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); it++)
+		losers.push_back(it->first);
 	return losers;
 }
 
-void PmergeMe::mergeSort(std::vector<int>& winners) {
-	std::vector<int> result;
-	std::vector<int> left;
-	std::vector<int> right;
+void PmergeMe::mergeSortPairs(std::vector<std::pair<int,int> >& pairs) {
+	std::vector<std::pair<int,int> > result;
+	std::vector<std::pair<int,int> > left;
+	std::vector<std::pair<int,int> > right;
 
-	if (winners.size() <= 1)
+	if (pairs.size() <= 1)
 		return;
 
-	size_t mid = winners.size() / 2;
-	for (size_t i = 0; i < winners.size(); i++){
+	size_t mid = pairs.size() / 2;
+	for (size_t i = 0; i < pairs.size(); i++){
 		if (i < mid)
-			left.push_back(winners[i]);
+			left.push_back(pairs[i]);
 		else
-			right.push_back(winners[i]);
+			right.push_back(pairs[i]);
 	}
 	
-	mergeSort(left);
-	mergeSort(right);
+	mergeSortPairs(left);
+	mergeSortPairs(right);
 
-	std::vector<int>::iterator itLeft = left.begin();
-	std::vector<int>::iterator itRight = right.begin();
+	std::vector<std::pair<int,int> >::iterator itLeft = left.begin();
+	std::vector<std::pair<int,int> >::iterator itRight = right.begin();
 	while (itLeft != left.end() && itRight != right.end()) {
-		if (*itLeft < *itRight) {
+		if (itLeft->second < itRight->second) {
 			result.push_back(*itLeft);
 			++itLeft;
 		}
@@ -154,9 +157,50 @@ void PmergeMe::mergeSort(std::vector<int>& winners) {
 		result.push_back(*itRight);
 		++itRight;
 	}
-	winners = result;
+	pairs = result;
 }
 
-void PmergeMe::insertLoser() {
+void PmergeMe::insertLoser(std::vector<int>& mainChain, int value) {
+	// binary search + insertion
+	size_t left = 0;
+	size_t right = mainChain.size();
 	
+	while (left < right) {
+			size_t mid = (left + right) / 2;
+		if (value > mainChain[mid])
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	mainChain.insert(mainChain.begin() + left, value);
+}
+
+//função normal sem template
+std::vector<size_t> PmergeMe::JacobsthalOrderFull(std::size_t size) {
+	if (size == 0)
+   		return std::vector<size_t>();
+	std::vector<size_t> jac;
+
+	jac.push_back(1);
+	jac.push_back(3);
+
+	while (jac.back() < size)
+		jac.push_back(jac[jac.size() - 1] + 2 * jac[jac.size() - 2]);
+
+	std::vector<size_t> order;
+	order.push_back(jac[0]);
+	for (size_t i = 1; i < jac.size(); i++) {
+		size_t curr = jac[i];
+		size_t prev = jac[i - 1];
+
+		if (curr > size)
+			curr = size;
+		for (size_t j = curr; j > prev; j--)
+			order.push_back(j);
+	}
+	return order;
+}
+
+void PmergeMe::exec() {
+	_vec = sortVector();
 }
