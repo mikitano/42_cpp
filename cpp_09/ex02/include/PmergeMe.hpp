@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 01:23:34 by mkitano           #+#    #+#             */
-/*   Updated: 2026/08/05 03:43:01 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/08/05 23:53:48 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,27 @@ class PmergeMe {
 		std::vector<int> _vec;
 		std::deque<int> _deq;
 
+		void printBefore() const;
+		void printAfter() const;
 		std::vector<size_t> JacobsthalOrderFull(std::size_t size);
+		
+		template <typename Container>
+		void sort(Container& arr);
+		
+		template <typename Container>
+		std::vector<std::pair<int, int> >makePairs(const Container& arr);
 
-		//acho que esses podem ser possiveis template
-		std::vector<std::pair<int, int> >makePairs();
-		std::vector<int> pairWinners(const std::vector<std::pair<int, int> >& pairs);
-		std::vector<int> pairLosers(const std::vector<std::pair<int, int> >& pairs);
-		void mergeSortPairs(std::vector<std::pair<int,int> >& pairs);
-		void insertLoser(std::vector<int>& mainChain, int value);
+		template <typename Container>
+		Container pairWinners(std::vector<std::pair<int, int> >& pairs);
+
+		template <typename Container>
+		Container pairLosers(std::vector<std::pair<int, int> >& pairs);
+
+		template <typename PairContainer>
+		void mergeSortPairs(PairContainer& pairs);
+
+		template <typename Container>
+		void insertLoser(Container& mainChain, int value);
 
 	public:
 		PmergeMe();
@@ -38,16 +51,9 @@ class PmergeMe {
 		~PmergeMe();
 
 		void parseInput(int ac, char** av);
-
-		void printBefore() const;
-		void printAfter() const;
-		
-		//acho que esses podem ser possiveis template
-		std::vector<int> sortVector();
-		//void sortDeque();
-
 		void exec();
-
 };
+
+#include "PmergeMe.tpp"
 
 #endif

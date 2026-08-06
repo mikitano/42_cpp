@@ -6,7 +6,7 @@
 /*   By: mkitano <mkitano@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/01 18:01:45 by mkitano           #+#    #+#             */
-/*   Updated: 2026/08/05 03:53:47 by mkitano          ###   ########.fr       */
+/*   Updated: 2026/08/05 23:52:36 by mkitano          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cstdlib>
 #include <climits>
 #include <cerrno>
+#include <ctime>
 
 PmergeMe::PmergeMe() {}
 
@@ -72,110 +73,6 @@ void PmergeMe::printAfter() const {
 	std::cout << std::endl;
 }
 
-std::vector<int> PmergeMe::sortVector() {
-	std::vector<std::pair<int, int> > pairs = makePairs();
-
-	mergeSortPairs(pairs);
-	std::vector<int> mainChain = pairWinners(pairs);	
-	std::vector<int> losers = pairLosers(pairs);
-
-	std::vector<size_t> jacOrder = JacobsthalOrderFull(losers.size());
-	for (size_t i = 0; i < jacOrder.size(); i++)
-		insertLoser(mainChain, losers[jacOrder[i] - 1]);
-
-	if (_vec.size() % 2 != 0){
-		int leftover = _vec.back();
-		insertLoser(mainChain, leftover);
-	}
-	return mainChain;
-}
-
-std::vector<std::pair<int, int> > PmergeMe::makePairs() {
-	std::vector<std::pair<int, int> > pairs;
-
-	for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); it+= 2 ) {
-		if (it + 1 == _vec.end())
-			break;
-		int a = *it, b = *(it + 1);
-		if (a > b)
-			std::swap(a, b);
-		pairs.push_back(std::make_pair(a, b));
-	}
-	return pairs;
-}
-
-std::vector<int> PmergeMe::pairWinners(const std::vector<std::pair<int, int> >& pairs) {
-	std::vector<int> winners;
-	for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		winners.push_back(it->second);
-	return winners;
-} 
-
-std::vector<int> PmergeMe::pairLosers(const std::vector<std::pair<int, int> >& pairs) {
-	std::vector<int> losers;
-	for (std::vector<std::pair<int, int> >::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-		losers.push_back(it->first);
-	return losers;
-}
-
-void PmergeMe::mergeSortPairs(std::vector<std::pair<int,int> >& pairs) {
-	std::vector<std::pair<int,int> > result;
-	std::vector<std::pair<int,int> > left;
-	std::vector<std::pair<int,int> > right;
-
-	if (pairs.size() <= 1)
-		return;
-
-	size_t mid = pairs.size() / 2;
-	for (size_t i = 0; i < pairs.size(); i++){
-		if (i < mid)
-			left.push_back(pairs[i]);
-		else
-			right.push_back(pairs[i]);
-	}
-	
-	mergeSortPairs(left);
-	mergeSortPairs(right);
-
-	std::vector<std::pair<int,int> >::iterator itLeft = left.begin();
-	std::vector<std::pair<int,int> >::iterator itRight = right.begin();
-	while (itLeft != left.end() && itRight != right.end()) {
-		if (itLeft->second < itRight->second) {
-			result.push_back(*itLeft);
-			++itLeft;
-		}
-		else {
-			result.push_back(*itRight);
-			++itRight;
-		}
-	}
-	while (itLeft != left.end()) {
-		result.push_back(*itLeft);
-		++itLeft;
-	}
-	while (itRight != right.end()) {
-		result.push_back(*itRight);
-		++itRight;
-	}
-	pairs = result;
-}
-
-void PmergeMe::insertLoser(std::vector<int>& mainChain, int value) {
-	// binary search + insertion
-	size_t left = 0;
-	size_t right = mainChain.size();
-	
-	while (left < right) {
-			size_t mid = (left + right) / 2;
-		if (value > mainChain[mid])
-			left = mid + 1;
-		else
-			right = mid;
-	}
-	mainChain.insert(mainChain.begin() + left, value);
-}
-
-//função normal sem template
 std::vector<size_t> PmergeMe::JacobsthalOrderFull(std::size_t size) {
 	if (size == 0)
    		return std::vector<size_t>();
@@ -202,5 +99,21 @@ std::vector<size_t> PmergeMe::JacobsthalOrderFull(std::size_t size) {
 }
 
 void PmergeMe::exec() {
-	_vec = sortVector();
+	printBefore();
+	
+	std::clock_t startVec = std::clock();
+	sort(_vec);
+	std::clock_t endVec = std::clock();
+
+	std::clock_t startDeq = std::clock();
+	sort(_deq);
+	std::clock_t endDeq = std::clock();
+
+	printAfter();
+	std::cout << std::endl;
+
+	double deqTime = static_cast<double>(endDeq - startDeq) * 1000000 / CLOCKS_PER_SEC;
+	double vecTime = static_cast<double>(endVec - startVec) * 1000000 / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector : " << vecTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << _deq.size() << " elements with std::deque : " << deqTime << " us" << std::endl;
 }
